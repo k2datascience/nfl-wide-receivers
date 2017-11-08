@@ -60,11 +60,11 @@ The source data for the project was scraped from [Pro Football Reference](https:
 
 With web scraping, the data obtained is all in string format. Several columns were easily converted to integer and float values. Others needed to use string manipulation techniques in order to remove extra characters like percentage signs or unit names (ie. lb). There were only 3 players with missing weight/height data, another 4 with missing targets data and another 22 with missing age data. I dropped those with missing weight/height for now. The others will have to be dropped during other parts of the analysis.
 
-![Missing Data Visualization]('./reports/figures/missing_data.png')
+![Missing Data Visualization](reports/figures/missing_data.png)
 
 The pandas profiling package gave useful insights on the various features. I will have to decide on a certain set of filters for modeling, such as to only examine players who are true wide receiver position players vs. running backs or tight ends that get many targets or to only examine players with a minimum threshold of targets per game.
 
-![pandas profiling]('./reports/figures/pandas_profiling.png')
+![pandas profiling](reports/figures/pandas_profiling.png)
 
 ## Exploratory Data Analysis
 

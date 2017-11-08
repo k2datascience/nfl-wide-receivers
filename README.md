@@ -62,13 +62,23 @@ With web scraping, the data obtained is all in string format. Several columns we
 
 ![Missing Data Visualization](reports/figures/missing_data.png)
 
-The pandas profiling package gave useful insights on the various features. I will have to decide on a certain set of filters for modeling, such as to only examine players who are true wide receiver position players vs. running backs or tight ends that get many targets or to only examine players with a minimum threshold of targets per game.
+The pandas profiling package gave useful insights on the various features. I will have to decide on a certain set of filters for modeling, such as to only examine players who are true wide receiver position players vs. running backs or tight ends that get many targets or to only examine players with a minimum threshold of targets per game. There are quite a few highly correlated variables that may distort a future regression model. There are also a few features with quite a few zeroes and too many distinct positions.
 
 ![pandas profiling](reports/figures/pandas_profiling.png)
 
 ## Exploratory Data Analysis
 
-Highlight histograms, boxplots, others. Show outlier analysis like descriptive stats notebook about NBA players.
+I started by examining the distributions of all the numerical features. Yards per reception will be the target variable for regression analysis. It has quite a high kurtosis value and that is evident by the extreme peakedness on the histogram.
+
+![Yards per Reception Histogram](reports/figures/yards_per_rec_hist.png)
+
+The data needs a round of outlier removal as there seems to be players that have high catch percentages. These cases are probably players that had very few catches throughout the whole season.
+
+![Catch Percentage Histogram](reports/figures/catch_pct_hist.png)
+
+From the earlier analysis, I noticed there are 72 distinct positions. I am mostly concerned with the wide reciever position, but tight end and some of these hybrid positions overlap with the traditional wide receiver. I will have to decide whether to use a mapping function in order to consolidate the 72 into a much smaller number and more manageable feature.
+
+![Boxplot of Positions](reports/figures/boxplot_by_position.png)
 
 ## Inferential Analysis
 

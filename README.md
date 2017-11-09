@@ -45,6 +45,11 @@ Project Organization
 
 
 --------
+# Project Workflow
+
+![Workflow Diagram](reports/figures/regression_workflow.png)
+
+--------
 
 # Project Walkthrough
 

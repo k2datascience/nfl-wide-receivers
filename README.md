@@ -118,4 +118,4 @@ Further analysis of all variables was done using best subset selection. Here is 
 
 This was merely an MVP for a deeper analysis of NFL stats prediction. I'm hoping to build a robust, streaming model that could be used to bet on daily fantasy drafts. I'd like to extend the model to examine other players, other statistics as well as time series forecasting, so it could be used live during the NFL season.
 
-If real money was on the line, I would need to incorporate several more domain-specific features. Looking at streaks, injuries, match-ups against other teams and specific players, weather, historical performance against the same team, etc. An additional qualitative element about how "one is feeling" about the games on Sunday may factor in as well when deciding a final line-up
+If real money was on the line, I would need to incorporate several more domain-specific features. Looking at streaks, injuries, match-ups against other teams and specific players, weather, historical performance against the same team, etc. An additional qualitative element about how "one is feeling" about the games on Sunday may factor in as well when deciding a final line-up.

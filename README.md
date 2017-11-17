@@ -87,8 +87,35 @@ From the earlier analysis, I noticed there are 72 distinct positions. I am mostl
 
 ## Inferential Analysis
 
+I started off by looking at the 95% confidence intervals for various metric means by height-group. Here are the findings:
+
+- Short players have a substantially higher catch percentage (`catch_pct`), but they have lower yards per reception (`yards_per_rec`) and lower receiving yards per game (`rec_yards_per_game`).
+- Tall players have a much higher interval of touchdowns
+- Unsurprisingly, tall players tend to weigh a lot more
+
+Then, I proceeded to perform hypothesis test at a 1% level to determine statistical significance. Here are the findings:
+
+- Taller players obviously differ in height and weight compared to shorter players
+- Taller players have significantly more receiving yards per game, yards per reception
+- There is not a statistically significant difference in the mean number of targers per game
+- Shorter players have a higher mean catch percentage
+- There is not a statistically significant difference in the mean number of receptions per game
+- The mean number of touchdowns for taller players is significanly greater
+
 ## Regression Analysis
+
+Moving on to modeling, I wanted to examine whether I would be able to predict the number of touchdowns in a season based on other season statistics. The first model was a simple bivariate analysis of targets per game (`targets_per_game`) and touchdowns (`tds`). The R-squared came out around `0.515`. The 95% confidence intevals are reasonably narrow for the coefficients, particularly for `targets_per_game`, but obviously the intercept would not be negative in reality (negative toucdowns) so let's remove that from future models.
+
+The residuals are distributed in a fairly random fashion, and we certainly don't seem to have any curvature, but there is some heteroskedasticity. This last aspect is something we don't want for standard linear models, but it isn't too extreme.
+
+![Bivariate Residuals](reports/figures/residuals.png)
+
+Further analysis with all variables was done using best subset selection. Here is the visual comaprison of RSS, R-Squared, AIC and BIC.
+
+![Best Subset](reports/figures/best_subset.png)
 
 ## Conclusions
 
-## Further Analysis
+This was merely a MVP for a deeper analysis in NFL stats prediction. I'm hoping to build a robust, streaming model that could be used to bet on daily fantasy drafts. I'd like to extend the model to examine other players, other statistics as well as time series forecasting, so it could be used live during the NFL season.
+
+If real money was on the line, I would need to incorporate several more domain-specific features. Looking at streaks, injuries, match-ups against other teams and specific players, weather, historical performance against the same team, etc. An additional qualitative element about how "one is feeling" about the games on Sunday may factor in as well when deciding a final line-up

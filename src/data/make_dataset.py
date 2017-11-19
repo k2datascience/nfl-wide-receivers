@@ -5,13 +5,14 @@ import pandas as pd
 import numpy as np
 import sqlite3
 
-def scrape_stats(start_year=2010, end_year=2018):
+def scrape_stats(start_year=2010, end_year=2016):
     "Function to scrape wide receiver statistics by year range"
     stats_store = []
     start = int(start_year)
     end = int(end_year)
 
-    for i in range(start, end):
+    for i in range(start, end+1):
+        print("Scraping data for season {0}".format(i))
         url = "https://www.pro-football-reference.com/years/" + str(i) + "/receiving.htm"
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
@@ -49,7 +50,7 @@ def scrape_stats(start_year=2010, end_year=2018):
                 # print("Ran into header row.")
                 pass
 
-    pickle.dump(stats_store, open("stats_store.p", "wb"))
+    pickle.dump(stats_store, open("../data/raw/stats_store.p", "wb"))
     return stats_store
 
 
@@ -57,8 +58,8 @@ def scrape_players(stats_store):
     "Function to scrape player demographic data"
     for i, player in enumerate(stats_store):
 
-        # if i % 100 == 0:
-        #     print(i)
+        if i % 100 == 0:
+            print("Scraping {0} demographics. He is number {1} out of {2}".format(player['name'], i, len(stats_store)))
 
         url = "https://www.pro-football-reference.com/" + str(player['demo_link'])
         page = requests.get(url)
@@ -74,7 +75,7 @@ def scrape_players(stats_store):
 
 
     stats_player_store = stats_store
-    pickle.dump(stats_player_store, open("stats_player_store.p", "wb"))
+    pickle.dump(stats_player_store, open("../data/raw/stats_player_store.p", "wb"))
     return stats_player_store
 
 
@@ -134,7 +135,11 @@ def clean_data_store_sql(data):
     for col in lower:
         df[col] = df.apply(lambda x: lowercase(x, col), 1)
 
-    conn = sqlite3.connect("nfl.db")
-    cleaned_df.to_sql("wide_receivers", conn, if_exists="replace")
+    # create a new feature for targets per game
+    df['targets_per_game'] = df['targets'] / df['games']
+
+    conn = sqlite3.connect("../data/processed/nfl_wr.db")
+    df.to_sql("wide_receivers", conn, if_exists="replace")
+    conn.close()
 
     return df

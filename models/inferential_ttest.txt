@@ -1,0 +1,24 @@
+catch_pct
+Ttest_indResult(statistic=1.2857868413266231, pvalue=0.19951849226538304) 
+ 
+weight
+Ttest_indResult(statistic=-14.359517292838685, pvalue=2.1857892587976833e-35) 
+ 
+rec_yards_per_game
+Ttest_indResult(statistic=-0.91765978799063941, pvalue=0.35968406826671062) 
+ 
+height
+Ttest_indResult(statistic=-31.336990642263149, pvalue=5.4907728170370598e-104) 
+ 
+rec_per_game
+Ttest_indResult(statistic=-0.061826361114640099, pvalue=0.95075084390389786) 
+ 
+td
+Ttest_indResult(statistic=-2.3176558878384892, pvalue=0.021268844417593795) 
+ 
+yards_per_rec
+Ttest_indResult(statistic=-2.8612884151284059, pvalue=0.0045207261689297652) 
+ 
+targets_per_game
+Ttest_indResult(statistic=-0.25172303796866263, pvalue=0.80146707600365275) 
+ 
